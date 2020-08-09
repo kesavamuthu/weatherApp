@@ -1,0 +1,19 @@
+.temp {
+  font-size: 3.5em;
+  float: left;
+  width: 55%;
+  max-height: 200px;
+}
+
+.humidity {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+.wind {
+  font-size: 1.2em;
+}
+
+.vel {
+  font-size: 0.8em;
+}

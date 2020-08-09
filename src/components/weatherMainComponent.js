@@ -23,7 +23,7 @@ class WeatherMainComponent extends React.Component {
       //   console.log(resp.data);
       let map = new Map();
       resp.data.list.forEach((e, i) => {
-        if (!map.has(e.dt_txt.split(" ")[0])) {
+        if (map.size < 5 && !map.has(e.dt_txt.split(" ")[0])) {
           map.set(e.dt_txt.split(" ")[0], e);
           console.log(e.dt_txt.split(" ")[0]);
         }
@@ -32,16 +32,6 @@ class WeatherMainComponent extends React.Component {
         dataMap: map,
         city: resp.data.city.name,
       });
-      //   this.data = map;
-      //   console.log(map);
-      //   console.log(resp.data.city.name);
-      //   console.log(resp.data.list[0].dt_txt.split(" ")[0]);
-      //   console.log(resp.data.list[0].main.temp);
-      //   console.log(resp.data.list[0].main.humidity);
-      //   console.log(resp.data.list[0].wind.speed);
-      //   console.log(resp.data.list[0].weather[0].icon);
-      //   console.log(resp.data.list[0].weather[0].description);
-      //   console.log(new Date(resp.data.list[0].dt));
 
       console.log(resp.data.list[0].main);
     });

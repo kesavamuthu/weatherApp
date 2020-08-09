@@ -1,15 +1,19 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-
+import "./card.css";
 function WeatherCard(props) {
   let ano = "wi wi-owm-day-" + props.valueProps.weather[0].id + " display-2";
+  let bg = backgroundSetter(props.valueProps.main.temp);
   return (
     <>
       <Card
-        bg="warning"
         text="dark"
-        style={{ width: "15rem", display: "inline-flex" }}
-        className="m-2"
+        style={{
+          width: "15rem",
+          display: "inline-flex",
+          backgroundColor: `${bg}`,
+        }}
+        className="m-2 weather-widget warm"
       >
         <Card.Header>
           <Card.Text>{props.cityProps}</Card.Text>
@@ -19,9 +23,21 @@ function WeatherCard(props) {
         </Card.Header>
         <Card.Body>
           <Card.Text>
-            {props.valueProps.main.temp}
-            {props.valueProps.main.humidity}
-            {props.valueProps.wind.speed}
+            <div className="temp">
+              <span className="temp-number">
+                {Math.floor(props.valueProps.main.temp)}
+              </span>
+              <span className="wi wi-degrees "></span>
+            </div>
+            <div className="humidity">
+              <i className="wi wi-raindrop"></i>
+              {props.valueProps.main.humidity} %
+            </div>
+
+            <div className="wind">
+              <i className="wi wi-small-craft-advisory"></i>
+              {props.valueProps.wind.speed} <span className="vel">Km/h</span>
+            </div>
           </Card.Text>
         </Card.Body>
       </Card>
@@ -29,4 +45,17 @@ function WeatherCard(props) {
   );
 }
 
+function backgroundSetter(temp) {
+  if (temp >= 30) {
+    return "#fc6f03";
+  } else if (temp > 20 && temp < 30) {
+    return "#94fc03";
+  } else if (temp > 10 && temp < 20) {
+    return "#7aebd1";
+  } else if (temp > 0 && temp < 10) {
+    return "#a4d2ed";
+  } else if (temp <= 0) {
+    return "#f1e8fa";
+  }
+}
 export default WeatherCard;

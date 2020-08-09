@@ -4,7 +4,6 @@ import Config from "../config";
 import "./searchBar.css";
 
 let cities = Config.cities;
-// let filteredOptions = [];
 function SearchBar(props) {
   const [inputState, setInputState] = useState("");
   const [suggestionList, setSuggestions] = useState([]);
@@ -26,16 +25,7 @@ function SearchBar(props) {
               id="myInputautocomplete-list"
               className="autocomplete-items"
               style={{ width: "100%" }}
-              onClick={(event) => {
-                console.log(
-                  "event is ",
-                  event.target.dataset.value,
-                  event.target.value,
-                  event.target.tagName
-                );
-                if (event.target.dataset.value)
-                  setInputState(event.target.dataset.value);
-              }}
+              onClick={choiceSelector}
             >
               {suggestionListShower(suggestionList, inputState)}
             </div>
@@ -60,7 +50,7 @@ function SearchBar(props) {
   function autoComplete(event) {
     let value = event.target.value;
     if (!value) {
-      setSuggestions([]);
+      flusher();
       return;
     }
     setSuggestions(
@@ -68,6 +58,17 @@ function SearchBar(props) {
         return e.toLowerCase().indexOf(value.toLowerCase()) > -1;
       })
     );
+  }
+
+  function flusher() {
+    setSuggestions([]);
+  }
+
+  function choiceSelector(event) {
+    if (event.target.dataset.value) {
+      setInputState(event.target.dataset.value);
+      flusher();
+    }
   }
 }
 
