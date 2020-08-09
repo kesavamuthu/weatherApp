@@ -20,7 +20,7 @@ class WeatherMainComponent extends React.Component {
   dataFetcher(city = "Bengaluru") {
     let url = Config.url.replace("^", city);
     Axios.get(url).then((resp) => {
-      //   console.log(resp.data);
+      console.log(resp.data);
       let map = new Map();
       resp.data.list.forEach((e, i) => {
         if (map.size < 5 && !map.has(e.dt_txt.split(" ")[0])) {

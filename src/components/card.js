@@ -23,21 +23,21 @@ function WeatherCard(props) {
         </Card.Header>
         <Card.Body>
           <Card.Text>
-            <div className="temp">
+            <span className="temp">
               <span className="temp-number">
                 {Math.floor(props.valueProps.main.temp)}
               </span>
               <span className="wi wi-degrees "></span>
-            </div>
-            <div className="humidity">
+            </span>
+            <span className="humidity">
               <i className="wi wi-raindrop"></i>
               {props.valueProps.main.humidity} %
-            </div>
+            </span>
 
-            <div className="wind">
+            <span className="wind">
               <i className="wi wi-small-craft-advisory"></i>
               {props.valueProps.wind.speed} <span className="vel">Km/h</span>
-            </div>
+            </span>
           </Card.Text>
         </Card.Body>
       </Card>

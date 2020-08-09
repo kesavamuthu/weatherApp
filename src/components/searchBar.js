@@ -24,7 +24,7 @@ function SearchBar(props) {
             <div
               id="myInputautocomplete-list"
               className="autocomplete-items"
-              style={{ width: "100%" }}
+              style={{ width: "68%", overflow: "auto" }}
               onClick={choiceSelector}
             >
               {suggestionListShower(suggestionList, inputState)}
@@ -33,8 +33,10 @@ function SearchBar(props) {
               className="m-2"
               variant="primary"
               type="submit"
-              onClick={() => {
-                props.onSubmit(inputState);
+              onClick={(event) => {
+                event.preventDefault();
+                let tmp = inputState;
+                props.onSubmit(tmp);
                 setInputState("");
               }}
             >
@@ -61,7 +63,7 @@ function SearchBar(props) {
   }
 
   function flusher() {
-    setSuggestions([]);
+    setSuggestions([]); //used to reset the show list after selected
   }
 
   function choiceSelector(event) {
