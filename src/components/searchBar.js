@@ -75,12 +75,17 @@ function SearchBar(props) {
 }
 
 function suggestionListShower(suggestionList, inputState) {
-  console.log(suggestionList, inputState);
   return suggestionList.map((e, i) => {
+    let index = e.toLowerCase().indexOf(inputState);
+    let bold = e.substr(index, inputState.length);
+    let init = "";
+    if (index) init = e.substr(0, index);
+    let remain = e.substr(init.length + bold.length);
     return (
       <div key={i} data-value={e}>
-        <strong data-value={e}>{e.substr(0, inputState.length)}</strong>
-        {e.substr(inputState.length)}
+        {init}
+        <strong data-value={e}>{bold}</strong>
+        {remain}
       </div>
     );
   });

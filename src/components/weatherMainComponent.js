@@ -9,7 +9,6 @@ class WeatherMainComponent extends React.Component {
     super(props);
     this.state = { dataMap: "", city: "" };
     this.dataFetcher = this.dataFetcher.bind(this);
-    // this.dataMap = "";
     this.city = "";
   }
 
@@ -32,15 +31,12 @@ class WeatherMainComponent extends React.Component {
         dataMap: map,
         city: resp.data.city.name,
       });
-
-      console.log(resp.data.list[0].main);
     });
   }
   render() {
     let dataKeys = Array.from(
       this.state.dataMap instanceof Map && this.state.dataMap.keys()
     );
-    console.log("city is ", this.city);
     return (
       <>
         <SearchBar onSubmit={this.dataFetcher} />
